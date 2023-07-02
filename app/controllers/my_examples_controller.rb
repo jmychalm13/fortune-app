@@ -10,8 +10,35 @@ class MyExamplesController < ApplicationController
   end
 
   def lotto_nums
+    nums = []
+    index = 0
+    while index < 6
+      nums << rand(61)
+      index += 1
+    end
+
     render json: {
-      message: "I work",
+      message: nums,
+    }
+  end
+
+  def num_of_visits
+    render json: {
+      message: "Found a way to do this but it's too advanced for me. I think the reason we can't is because we would need to access local storage in the database or something like that...",
+    }
+  end
+
+  def lyrics
+    bottles = 99
+    song_lyrics = ""
+    while bottles > 0
+      song_lyrics << "#{bottles} bottles of beer on the wall. #{bottles} of beer. Take one down, pass it around"
+      bottles -= 1
+      song_lyrics << "#{bottles} of beer on the wall."
+    end
+
+    render json: {
+      song_lyrics: song_lyrics,
     }
   end
 end
